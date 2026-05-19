@@ -1,0 +1,13 @@
+{
+  "lattice_a_nm": 0.246,
+  "bandgap": {
+    "magic_angle_deg": 1.08,
+    "gaussian_width_deg": 0.35,
+    "coupling_scale_meV": 110.0,
+    "field_coefficient": 2.5
+  },
+  "monte_carlo": {
+    "default_seed": 42,
+    "comment": "All MC in solutions/yield_optimization uses this unless seed= is passed."
+  }
+}
