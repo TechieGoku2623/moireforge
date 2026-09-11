@@ -10,6 +10,16 @@
     "relative_uncertainty": 0.35,
     "note": "Phenomenological envelope (±35%); planning band, not a DFT/experiment fit."
   },
+  "system_overhead_w": {
+    "cpu_control_w": 0.8,
+    "noc_base_w": 0.3,
+    "noc_per_tile_w": 0.05,
+    "sram_base_w": 0.4,
+    "sram_per_tile_w": 0.03,
+    "dram_if_w": 1.2,
+    "leakage_base_w": 0.2,
+    "leakage_per_tile_w": 0.02
+  },
   "monte_carlo": {
     "default_seed": 42,
     "comment": "All MC in solutions/yield_optimization uses this unless seed= is passed."

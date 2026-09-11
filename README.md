@@ -199,6 +199,8 @@ See:
 - **[Evidence tiers](docs/EVIDENCE_TIERS.md)**
 - **[Limitations and resolution roadmap](docs/LIMITATIONS_AND_RESOLUTION_PLAN.md)**
 - **[Market comparison (model table)](docs/MARKET_COMPARISON.md)**
+- **[Literature validation anchors](docs/LITERATURE_VALIDATION.md)**
+- **[Methods snapshot](docs/METHODS_SNAPSHOT.md)**
 
 ---
 

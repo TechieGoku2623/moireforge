@@ -96,7 +96,7 @@ def diagram_performance_comparison() -> Path:
         for name, vals in moire_summary(work, mode).items():
             labels.append(name.replace(" ", "\n") + suffix)
             tops_list.append(vals["tops"])
-            eff_list.append(vals["tops_per_w"])
+            eff_list.append(vals["system_tops_per_w"])
             lat_list.append(vals["latency_ms"])
             colors.append(color)
 
@@ -110,7 +110,7 @@ def diagram_performance_comparison() -> Path:
     x = np.arange(len(labels))
     fig, axes = plt.subplots(1, 3, figsize=(14, 5.5))
     fig.suptitle(
-        "Model results: Moiré SoC vs baselines (target + conservative modes)",
+        "Model results: system TOPS/W includes CPU/NoC/SRAM/DRAM/leakage overhead",
         fontsize=12,
         fontweight="600",
     )
@@ -127,7 +127,7 @@ def diagram_performance_comparison() -> Path:
         return bars
 
     _bars(axes[0], tops_list, "Throughput", "TOPS (log)", log=True)
-    _bars(axes[1], eff_list, "Energy efficiency", "TOPS/W")
+    _bars(axes[1], eff_list, "System energy efficiency", "System TOPS/W")
     _bars(axes[2], lat_list, "Inferred latency", "ms (lower is better)")
 
     fig.text(

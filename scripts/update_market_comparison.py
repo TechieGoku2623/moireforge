@@ -9,13 +9,21 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from sim.performance_benchmark import Workload, moire_summary, mode_assumptions, reference_platforms, latency_ms
+from sim.performance_benchmark import (
+    Workload,
+    latency_ms,
+    mode_assumptions,
+    moire_summary,
+    reference_platforms,
+    system_overhead,
+)
 
 OUT = ROOT / "docs" / "MARKET_COMPARISON.md"
 
 
 def main() -> None:
     work = Workload("ResNet-50 (INT8)", 4.0)
+    oh = system_overhead()
     lines = [
         "# Market Comparison (Model-Derived)",
         "",
@@ -24,19 +32,28 @@ def main() -> None:
         "",
         f"Workload assumed: **{work.name}**, **{work.gops_per_inference:.1f} GOp / inference**.",
         "",
-        "## Moire SoC modes",
+        "## System overhead model (Watts)",
         "",
-        "| Config | Mode | TOPS | TOPS/W | Latency (ms) | Power (W) |",
-        "|--------|------|------|--------|--------------|-----------|",
+        f"- CPU/control: {oh.cpu_control_w}",
+        f"- NoC base + per-tile: {oh.noc_base_w} + {oh.noc_per_tile_w}×N",
+        f"- SRAM base + per-tile: {oh.sram_base_w} + {oh.sram_per_tile_w}×N",
+        f"- DRAM interface: {oh.dram_if_w}",
+        f"- Leakage base + per-tile: {oh.leakage_base_w} + {oh.leakage_per_tile_w}×N",
+        "",
+        "## Moire SoC modes (system TOPS/W includes overhead)",
+        "",
+        "| Config | Mode | TOPS | Accel W | Overhead W | System W | Accel TOPS/W | System TOPS/W | Latency (ms) |",
+        "|--------|------|------|---------|------------|----------|--------------|---------------|--------------|",
     ]
     for mode in ("physics_target", "conservative"):
         note = mode_assumptions(mode).note
         for label, vals in moire_summary(work, mode).items():
             lines.append(
-                f"| {label} | {mode} | {vals['tops']:.1f} | {vals['tops_per_w']:.1f} | "
-                f"{vals['latency_ms']:.2f} | {vals['power_w']:.1f} |"
+                f"| {label} | {mode} | {vals['tops']:.1f} | {vals['accel_power_w']:.2f} | "
+                f"{vals['overhead_w']:.2f} | {vals['power_w']:.2f} | {vals['accel_tops_per_w']:.2f} | "
+                f"{vals['system_tops_per_w']:.2f} | {vals['latency_ms']:.2f} |"
             )
-        lines.append(f"")
+        lines.append("")
         lines.append(f"_Assumption ({mode}): {note}_")
         lines.append("")
 
@@ -57,10 +74,11 @@ def main() -> None:
             "",
             "## How to read this",
             "",
-            "- Use **conservative** for planning and risk discussion.",
-            "- Use **physics_target** as an optimistic research envelope.",
-            "- Baseline platforms omit full memory/system accounting; treat as order-of-magnitude context.",
+            "- **System TOPS/W** is the primary Moire figure of merit (includes overhead).",
+            "- **Accel TOPS/W** is accelerator-only and will look more optimistic.",
+            "- Use **conservative** for planning; **physics_target** is aspirational.",
             "- Figures: `docs/generated/performance_comparison.png`",
+            "- Literature anchors: `docs/LITERATURE_VALIDATION.md`",
             "",
             "See also: `docs/EVIDENCE_TIERS.md`, `docs/LIMITATIONS_AND_RESOLUTION_PLAN.md`.",
             "",

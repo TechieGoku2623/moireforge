@@ -5,21 +5,29 @@
 
 Workload assumed: **ResNet-50 (INT8)**, **4.0 GOp / inference**.
 
-## Moire SoC modes
+## System overhead model (Watts)
 
-| Config | Mode | TOPS | TOPS/W | Latency (ms) | Power (W) |
-|--------|------|------|--------|--------------|-----------|
-| Small (4 tiles) | physics_target | 51.2 | 25.6 | 78.12 | 2.0 |
-| Medium (16 tiles) | physics_target | 204.8 | 25.6 | 19.53 | 8.0 |
-| Large (64 tiles) | physics_target | 819.2 | 25.6 | 4.88 | 32.0 |
+- CPU/control: 0.8
+- NoC base + per-tile: 0.3 + 0.05×N
+- SRAM base + per-tile: 0.4 + 0.03×N
+- DRAM interface: 1.2
+- Leakage base + per-tile: 0.2 + 0.02×N
 
-_Assumption (physics_target): Optimistic envelope tied to model assumptions; not measured silicon._
+## Moire SoC modes (system TOPS/W includes overhead)
 
-| Small (4 tiles) | conservative | 16.0 | 2.0 | 250.00 | 8.0 |
-| Medium (16 tiles) | conservative | 64.0 | 2.0 | 62.50 | 32.0 |
-| Large (64 tiles) | conservative | 256.0 | 2.0 | 15.62 | 128.0 |
+| Config | Mode | TOPS | Accel W | Overhead W | System W | Accel TOPS/W | System TOPS/W | Latency (ms) |
+|--------|------|------|---------|------------|----------|--------------|---------------|--------------|
+| Small (4 tiles) | physics_target | 51.2 | 2.00 | 3.30 | 5.30 | 25.60 | 9.66 | 78.12 |
+| Medium (16 tiles) | physics_target | 204.8 | 8.00 | 4.50 | 12.50 | 25.60 | 16.38 | 19.53 |
+| Large (64 tiles) | physics_target | 819.2 | 32.00 | 9.30 | 41.30 | 25.60 | 19.84 | 4.88 |
 
-_Assumption (conservative): Guarded planning envelope intended for risk-aware projections._
+_Assumption (physics_target): Optimistic accelerator envelope; system overhead still applied._
+
+| Small (4 tiles) | conservative | 16.0 | 8.00 | 3.30 | 11.30 | 2.00 | 1.42 | 250.00 |
+| Medium (16 tiles) | conservative | 64.0 | 32.00 | 4.50 | 36.50 | 2.00 | 1.75 | 62.50 |
+| Large (64 tiles) | conservative | 256.0 | 128.00 | 9.30 | 137.30 | 2.00 | 1.86 | 15.62 |
+
+_Assumption (conservative): Guarded accelerator envelope for risk-aware planning; system overhead applied._
 
 ## Reference platforms (simplified model rows)
 
@@ -32,9 +40,10 @@ _Assumption (conservative): Guarded planning envelope intended for risk-aware pr
 
 ## How to read this
 
-- Use **conservative** for planning and risk discussion.
-- Use **physics_target** as an optimistic research envelope.
-- Baseline platforms omit full memory/system accounting; treat as order-of-magnitude context.
+- **System TOPS/W** is the primary Moire figure of merit (includes overhead).
+- **Accel TOPS/W** is accelerator-only and will look more optimistic.
+- Use **conservative** for planning; **physics_target** is aspirational.
 - Figures: `docs/generated/performance_comparison.png`
+- Literature anchors: `docs/LITERATURE_VALIDATION.md`
 
 See also: `docs/EVIDENCE_TIERS.md`, `docs/LIMITATIONS_AND_RESOLUTION_PLAN.md`.

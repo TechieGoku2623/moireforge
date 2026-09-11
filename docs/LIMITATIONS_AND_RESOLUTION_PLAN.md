@@ -17,12 +17,15 @@ This document tracks known gaps and concrete actions to close them.
 
 ### Current limitation
 - Performance is model-derived and sensitive to assumptions.
-- Baseline rows are simplified, not full system reproductions.
+- Baseline platforms are simplified, not full system reproductions.
 
-### Resolution
+### Resolution (in progress / done)
 - Keep two explicit modes: `physics_target` and `conservative`.
-- Add workload/memory accounting sheet and publish assumptions.
-- Add benchmark sanity tests to prevent accidental drift.
+- Report **accelerator** and **system** power/efficiency with explicit overhead model
+  (CPU, NoC, SRAM, DRAM interface, leakage) in `sim/performance_benchmark.py`.
+- Add literature anchors in `docs/LITERATURE_VALIDATION.md` / `sim/literature.py`.
+- Keep benchmark sanity tests to prevent accidental drift.
+- Next: workload-specific memory traffic model and PDK-closed power extraction.
 
 ## 3) RTL maturity
 
