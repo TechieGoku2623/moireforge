@@ -32,3 +32,16 @@ def test_physics_sweep():
     data = r.json()
     assert data.get("count") == 5
     assert len(data.get("samples", [])) == 5
+    sample = data["samples"][0]
+    assert "bandgap_low_meV" in sample
+    assert sample["bandgap_low_meV"] <= sample["bandgap_meV"] <= sample["bandgap_high_meV"]
+
+
+def test_yield_defects_endpoint():
+    r = client.post(
+        "/yield/defects",
+        json={"n_required": 16, "n_spare": 4, "p_defective": 0.15, "p_marginal": 0.1, "trials": 1000},
+    )
+    assert r.status_code == 200
+    data = r.json()
+    assert 0.0 <= data["p_system_ok"] <= 1.0

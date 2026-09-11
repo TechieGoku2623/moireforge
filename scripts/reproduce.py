@@ -62,7 +62,11 @@ def main() -> int:
         ("solutions.yield_optimization", [sys.executable, str(ROOT / "solutions" / "yield_optimization.py")]),
         ("solutions.integration_flow", [sys.executable, str(ROOT / "solutions" / "integration_flow.py")]),
         ("diagrams", [sys.executable, str(ROOT / "scripts" / "generate_diagrams.py")]),
+        ("market_comparison", [sys.executable, str(ROOT / "scripts" / "update_market_comparison.py")]),
+        ("rtl_lint", [sys.executable, str(ROOT / "scripts" / "lint_rtl.py")]),
         ("benchmark_report", [sys.executable, str(ROOT / "scripts" / "run_benchmark_report.py")]),
+        ("transport", [sys.executable, "-c", "import transport; transport.main()"]),
+        ("digital_twin", [sys.executable, "-c", "import digital_twin; digital_twin.main()"]),
     ]
     for label, cmd in steps:
         _run_step(label, cmd)

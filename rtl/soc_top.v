@@ -1,4 +1,4 @@
-// SoC top-level stub tying CPU stub to a single accelerator tile
+// STUB / behavioral: SoC top-level tying CPU stub to a single accelerator tile
 `timescale 1ns/1ps
 
 module soc_top (

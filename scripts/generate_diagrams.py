@@ -21,16 +21,30 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 
 def diagram_bandgap_vs_twist() -> Path:
-    from sim.moire_physics import bandgap_meV
+    from sim.moire_physics import bandgap_envelope_meV
 
     t = np.linspace(0.2, 4.0, 120)
-    eg = np.array([bandgap_meV(float(x)) for x in t])
-    fig, ax = plt.subplots(figsize=(7, 4))
-    ax.plot(t, eg, color="#2563eb", lw=2)
+    envs = [bandgap_envelope_meV(float(x)) for x in t]
+    eg = np.array([e.nominal_meV for e in envs])
+    low = np.array([e.low_meV for e in envs])
+    high = np.array([e.high_meV for e in envs])
+    fig, ax = plt.subplots(figsize=(7.5, 4.2))
+    ax.fill_between(t, low, high, color="#93c5fd", alpha=0.45, label="Uncertainty envelope")
+    ax.plot(t, eg, color="#1d4ed8", lw=2, label="Nominal model")
     ax.set_xlabel("Twist angle (deg)")
     ax.set_ylabel("Model bandgap (meV)")
-    ax.set_title("Moiré tunable gap (phenomenological)")
+    ax.set_title("Moiré tunable gap with planning envelope")
+    ax.legend(frameon=False, fontsize=8)
     ax.grid(True, alpha=0.3)
+    ax.text(
+        0.02,
+        0.02,
+        envs[0].note,
+        transform=ax.transAxes,
+        fontsize=7,
+        color="#64748b",
+        va="bottom",
+    )
     p = OUT / "bandgap_vs_twist.png"
     fig.tight_layout()
     fig.savefig(p, dpi=150)
@@ -201,16 +215,40 @@ def diagram_problem_solution_map() -> Path:
     return p
 
 
+def diagram_yield_defects() -> Path:
+    from solutions.yield_optimization import yield_with_defects
+
+    spares = [0, 2, 4, 8, 12]
+    p_ok = [
+        yield_with_defects(16, s, p_defective=0.15, p_marginal=0.10, trials=4000, seed=42).p_system_ok
+        for s in spares
+    ]
+    fig, ax = plt.subplots(figsize=(7, 4))
+    ax.plot(spares, p_ok, marker="o", color="#059669", lw=2)
+    ax.set_xlabel("Spare tiles")
+    ax.set_ylabel("P(system OK)")
+    ax.set_title("Yield with defects (15% defective, 10% marginal; need 16 good)")
+    ax.set_ylim(0, 1.05)
+    ax.grid(True, alpha=0.3)
+    p = OUT / "yield_with_defects.png"
+    fig.tight_layout()
+    fig.savefig(p, dpi=150, facecolor="white")
+    plt.close(fig)
+    return p
+
+
 def main() -> None:
     os.environ.setdefault("MPLBACKEND", "Agg")
     p1 = diagram_bandgap_vs_twist()
     p2 = diagram_soc_blocks()
     p3 = diagram_performance_comparison()
     p4 = diagram_problem_solution_map()
+    p5 = diagram_yield_defects()
     print(f"Wrote {p1}")
     print(f"Wrote {p2}")
     print(f"Wrote {p3}")
     print(f"Wrote {p4}")
+    print(f"Wrote {p5}")
 
 
 if __name__ == "__main__":

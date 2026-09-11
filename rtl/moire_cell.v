@@ -1,4 +1,4 @@
-// Behavioral Moiré excitonic cell (sync reset, active-high)
+// STUB / behavioral: Moiré excitonic cell (sync reset, active-high)
 `timescale 1ns/1ps
 
 module moire_cell #(

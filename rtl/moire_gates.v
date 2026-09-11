@@ -1,3 +1,4 @@
+// STUB / behavioral: Moiré gate primitives (NAND/NOR/NOT)
 `timescale 1ns/1ps
 
 module moire_nand2 (

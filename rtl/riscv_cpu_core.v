@@ -1,4 +1,4 @@
-// Minimal RV32I subset stub: fetch/decode placeholders for hierarchy tests
+// STUB / behavioral: Minimal RV32I subset — fetch placeholders for hierarchy tests
 `timescale 1ns/1ps
 
 module riscv_cpu_core (

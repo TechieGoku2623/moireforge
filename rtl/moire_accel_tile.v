@@ -1,4 +1,4 @@
-// Moiré accelerator tile — lightweight stub for hierarchy
+// STUB / behavioral: accelerator tile for hierarchy tests
 `timescale 1ns/1ps
 
 module moire_accel_tile #(

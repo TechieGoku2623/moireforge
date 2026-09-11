@@ -1,4 +1,4 @@
-// XY routing stub (64-bit flit)
+// STUB / behavioral: XY routing (64-bit flit)
 `timescale 1ns/1ps
 
 module noc_router #(

@@ -1,5 +1,5 @@
 `timescale 1ns/1ps
-// Wrapper: calibrated delay / skew placeholders
+// STUB / behavioral: calibrated delay / skew placeholders
 
 module moire_cell_calibrated #(
     parameter SKEW_PS = 0

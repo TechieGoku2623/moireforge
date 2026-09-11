@@ -211,6 +211,7 @@ See:
   - [Performance vs baselines](docs/generated/performance_comparison.png) — TOPS, TOPS/W, and latency from the same model as `sim.performance_benchmark` (illustrative; validate for your silicon and workload).
   - [Problems → what this repo provides](docs/generated/problem_solution_map.png) — maps edge-AI and integration pain points to simulations, RTL stubs, calibration, thermal/yield tools, and docs.
   - [Bandgap vs twist](docs/generated/bandgap_vs_twist.png) · [SoC blocks (conceptual)](docs/generated/soc_block_diagram.png)
+  - [Yield with defects](docs/generated/yield_with_defects.png) — spare tiles vs P(system OK) under 15%/10% defect/marginal injection.
 
 ### Visual Results
 
@@ -220,8 +221,11 @@ See:
 #### Problem to Solution Mapping
 ![Problem solution map](docs/generated/problem_solution_map.png)
 
-#### Bandgap vs Twist Angle
+#### Bandgap vs Twist Angle (with planning envelope)
 ![Bandgap vs twist](docs/generated/bandgap_vs_twist.png)
+
+#### Yield Under Defect Injection
+![Yield with defects](docs/generated/yield_with_defects.png)
 
 #### SoC Conceptual Block Diagram
 ![SoC block diagram](docs/generated/soc_block_diagram.png)

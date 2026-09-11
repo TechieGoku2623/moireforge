@@ -1,4 +1,5 @@
 `timescale 1ns/1ps
+// STUB / behavioral: gate-level smoke testbench
 
 module tb_moire_gates;
     reg a, b;

@@ -1,4 +1,4 @@
-// Simple DVFS / clock enable PMU stub
+// STUB / behavioral: DVFS / clock enable PMU
 `timescale 1ns/1ps
 
 module pmu (

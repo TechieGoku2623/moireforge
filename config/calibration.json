@@ -6,6 +6,10 @@
     "coupling_scale_meV": 110.0,
     "field_coefficient": 2.5
   },
+  "literature_envelope": {
+    "relative_uncertainty": 0.35,
+    "note": "Phenomenological envelope (±35%); planning band, not a DFT/experiment fit."
+  },
   "monte_carlo": {
     "default_seed": 42,
     "comment": "All MC in solutions/yield_optimization uses this unless seed= is passed."
