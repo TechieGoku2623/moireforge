@@ -66,5 +66,12 @@ Thumbs.db
 *.png
 !docs/*.png
 !docs/**/*.png
+!docs/generated/*.png
 results/
 logs/
+login-gh.ps1
+_ci_backup/
+*.gds
+!moire_soc.gds
+ideogram-*.jpg
+openart-*.jpg

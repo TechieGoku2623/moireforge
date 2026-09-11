@@ -198,6 +198,7 @@ Moiré SoC Configurations (physics_target):
 See:
 - **[Evidence tiers](docs/EVIDENCE_TIERS.md)**
 - **[Limitations and resolution roadmap](docs/LIMITATIONS_AND_RESOLUTION_PLAN.md)**
+- **[Market comparison (model table)](docs/MARKET_COMPARISON.md)**
 
 ---
 
