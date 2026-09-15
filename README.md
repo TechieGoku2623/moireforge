@@ -8,6 +8,8 @@ MoiréForge is an open design-and-simulation stack for a hybrid **CMOS + Moiré 
 
 ## Demo
 
+[![MoiréForge dashboard demo](docs/demo-poster.jpg)](docs/demo.mp4)
+
 <video src="docs/demo.mp4" controls width="100%"></video>
 
 If the player does not render on GitHub, download **[docs/demo.mp4](docs/demo.mp4)**.
