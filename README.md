@@ -1,20 +1,61 @@
+<div align="center">
+
 # MoiréForge
 
-**Moiré Superlattice SoC framework for edge AI exploration**
+**Moiré superlattice SoC framework for edge AI exploration**
 
-MoiréForge is an open design-and-simulation stack for a hybrid **CMOS + Moiré accelerator** architecture. It includes runnable physics models, dual-mode performance benchmarks (with system power overhead), calibration/yield/thermal solutions, behavioral RTL stubs, a FastAPI service, and reproducibility tooling.
+A hybrid **CMOS + Moiré accelerator** stack you can run: physics envelopes, system-power benchmarks, yield/thermal solutions, behavioral RTL, FastAPI, and a live dashboard.
 
-> **Important:** Reported TOPS / TOPS/W numbers are **model-derived**, not measured silicon. Prefer **conservative** mode for planning. See [Evidence tiers](docs/EVIDENCE_TIERS.md).
+[![Python](https://img.shields.io/badge/Python-sim%20%2B%20API-3776AB?logo=python&logoColor=white)](#quick-start)
+[![Next.js](https://img.shields.io/badge/Dashboard-Next.js-000000?logo=nextdotjs)](#quick-start)
+[![Evidence](https://img.shields.io/badge/Evidence-model--derived-CA8A04)](docs/EVIDENCE_TIERS.md)
+[![Demo](https://img.shields.io/badge/Demo-docs%2Fdemo.mp4-38BDF8)](docs/demo.mp4)
 
-## Demo
+</div>
 
-[![MoiréForge dashboard demo](docs/demo-poster.jpg)](docs/demo.mp4)
+MoiréForge lets you explore a *twist-angle* compute idea without pretending the silicon already exists. Twist a bilayer → the superlattice period changes → the model bandgap envelope moves → tile count and **system** TOPS/W (CPU / NoC / SRAM / DRAM / leakage included) follow. Conservative mode is the planning default.
 
-<video src="docs/demo.mp4" controls width="100%"></video>
+> **Honesty first:** reported TOPS / TOPS/W are **model-derived**, not measured silicon. See [Evidence tiers](docs/EVIDENCE_TIERS.md).
 
-If the player does not render on GitHub, download **[docs/demo.mp4](docs/demo.mp4)**.
+---
 
-The recording starts the FastAPI service, opens the Next.js dashboard, and walks repository alignment, conservative benchmark configs, and the live physics sweep.
+## Watch the demo
+
+<p align="center">
+  <a href="docs/demo.mp4">
+    <img src="docs/demo-poster.jpg" alt="MoiréForge dashboard walkthrough" width="920"/>
+  </a>
+</p>
+
+<p align="center">
+  <a href="docs/demo.mp4"><strong>▶ Play walkthrough (docs/demo.mp4)</strong></a>
+</p>
+
+<video src="docs/demo.mp4" controls width="100%" poster="docs/demo-poster.jpg"></video>
+
+The clip is the Next.js dashboard (`frontend/`) talking to FastAPI (`saas/api/`) — the same tree this README lists.
+
+| Time in clip | What you are seeing | Why it matters |
+| --- | --- | --- |
+| KPIs | API healthy, evidence = **model**, system TOPS/W | You immediately know this is a planning model, not a datasheet |
+| Repository alignment | `sim/` · `solutions/` · `rtl/` · `saas/api/` · `frontend/` · `docs/` | The dashboard names folders that actually exist at repo root |
+| Benchmark configs | Small / Medium / Large tiles, TOPS/W, latency | Conservative mode includes system power overhead |
+| Physics sweep | Twist ° → period nm → bandgap meV | The live `/physics/sweep` call is the same model as `python -m sim.moire_physics` |
+
+---
+
+## In plain English
+
+Edge AI wants more TOPS/W than CMOS alone is giving. Moiré materials are interesting because a **tiny twist** between 2D layers creates a large superlattice — in principle a tunable gap. This repo turns that sentence into something you can execute:
+
+```text
+Twist angle  →  Moiré period  →  Bandgap envelope (with uncertainty)
+             →  Logic-cell abstraction
+             →  Tile count × power (accel + system overhead)
+             →  Yield under defects  +  RTL stubs
+```
+
+If a number cannot be reproduced from `sim/` + `config/`, it does not belong on the dashboard.
 
 ---
 
