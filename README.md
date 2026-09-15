@@ -9,7 +9,7 @@ A hybrid **CMOS + Moiré accelerator** stack you can run: physics envelopes, sys
 [![Python](https://img.shields.io/badge/Python-sim%20%2B%20API-3776AB?logo=python&logoColor=white)](#quick-start)
 [![Next.js](https://img.shields.io/badge/Dashboard-Next.js-000000?logo=nextdotjs)](#quick-start)
 [![Evidence](https://img.shields.io/badge/Evidence-model--derived-CA8A04)](docs/EVIDENCE_TIERS.md)
-[![Demo](https://img.shields.io/badge/Demo-docs%2Fdemo.mp4-38BDF8)](docs/demo.mp4)
+[![Demo](https://img.shields.io/badge/Demo-plays%20on%20this%20page-38BDF8)](#watch-the-demo)
 
 </div>
 
@@ -21,18 +21,16 @@ MoiréForge lets you explore a *twist-angle* compute idea without pretending the
 
 ## Watch the demo
 
-The GIF **plays on this page**. Cursor’s recorder logo and end-of-video cube bumper have been removed.
+The preview **plays on this page**. The Cursor cube end-card is not in the file.
 
 <p align="center">
   <img src="docs/demo.gif" alt="MoiréForge dashboard walkthrough — plays inline" width="920"/>
 </p>
 
 <p align="center">
-  <a href="https://github.com/TechieGoku2623/moireforge/blob/main/docs/demo.mp4"><strong>▶ Open HD player on GitHub</strong></a>
+  <a href="https://github.com/TechieGoku2623/moireforge/blob/main/docs/demo.mp4"><strong>HD in-browser player</strong></a>
   ·
-  <a href="docs/watch.html">local HTML player</a>
-  ·
-  <a href="docs/demo.webp">WebP</a>
+  <a href="docs/watch.html">HTML player</a>
 </p>
 
 The clip is the Next.js dashboard (`frontend/`) talking to FastAPI (`saas/api/`) — the same tree this README lists.
