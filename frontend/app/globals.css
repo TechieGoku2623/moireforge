@@ -31,6 +31,62 @@ h1 {
   letter-spacing: -0.02em;
 }
 
+.hero {
+  margin-bottom: 1.5rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  color: var(--accent);
+  margin: 0 0 0.4rem;
+}
+
+h2 {
+  margin: 0 0 0.85rem;
+  font-size: 1.05rem;
+}
+
+.kpis {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.tree {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tree li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid #1e2a45;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.45rem 0.2rem;
+  border-bottom: 1px solid #1e2a45;
+}
+
+@media (max-width: 800px) {
+  .kpis {
+    grid-template-columns: 1fr;
+  }
+}
+
 .panel {
   margin-top: 1.5rem;
   padding: 1.25rem 1.5rem;

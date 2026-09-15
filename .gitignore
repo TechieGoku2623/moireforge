@@ -75,3 +75,8 @@ _ci_backup/
 !moire_soc.gds
 ideogram-*.jpg
 openart-*.jpg
+
+# Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/package-lock.json

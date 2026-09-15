@@ -6,6 +6,14 @@ MoiréForge is an open design-and-simulation stack for a hybrid **CMOS + Moiré 
 
 > **Important:** Reported TOPS / TOPS/W numbers are **model-derived**, not measured silicon. Prefer **conservative** mode for planning. See [Evidence tiers](docs/EVIDENCE_TIERS.md).
 
+## Demo
+
+<video src="docs/demo.mp4" controls width="100%"></video>
+
+If the player does not render on GitHub, download **[docs/demo.mp4](docs/demo.mp4)**.
+
+The recording starts the FastAPI service, opens the Next.js dashboard, and walks repository alignment, conservative benchmark configs, and the live physics sweep.
+
 ---
 
 ## Highlights
@@ -110,7 +118,7 @@ Full tables: [Market comparison](docs/MARKET_COMPARISON.md)
 ## Repository map
 
 ```text
-CHIP/
+moireforge/
 ├── sim/                 # Physics, logic cells, benchmarks, literature anchors
 ├── solutions/           # Calibration, yield, temperature, integration
 ├── transport/           # Ballistic / tunneling helpers
@@ -119,11 +127,12 @@ CHIP/
 ├── firmware/            # Boot + driver stubs
 ├── software/            # Python SDK stub
 ├── eda/                 # Synthesis / P&R script stubs
-├── saas/                # FastAPI (physics, benchmark, yield)
-├── frontend/            # Next.js dashboard scaffold
+├── saas/api/            # FastAPI (physics, benchmark, yield)
+├── frontend/            # Next.js dashboard (this demo UI)
 ├── scripts/             # reproduce, diagrams, market table, RTL lint
 ├── tests/               # pytest suite
 ├── docs/                # Architecture, evidence, literature, methods
+│   └── demo.mp4         # Product walkthrough
 ├── config/              # calibration.json (physics + system overhead)
 ├── requirements.txt
 ├── run.ps1 / run.bat
