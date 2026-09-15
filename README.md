@@ -21,16 +21,10 @@ MoiréForge lets you explore a *twist-angle* compute idea without pretending the
 
 ## Watch the demo
 
-The preview **plays on this page**. The Cursor cube end-card is not in the file.
+This walkthrough **plays on this page** — it does not download a file.
 
 <p align="center">
   <img src="docs/demo.gif" alt="MoiréForge dashboard walkthrough — plays inline" width="920"/>
-</p>
-
-<p align="center">
-  <a href="https://github.com/TechieGoku2623/moireforge/blob/main/docs/demo.mp4"><strong>HD in-browser player</strong></a>
-  ·
-  <a href="docs/watch.html">HTML player</a>
 </p>
 
 The clip is the Next.js dashboard (`frontend/`) talking to FastAPI (`saas/api/`) — the same tree this README lists.
