@@ -21,17 +21,19 @@ MoiréForge lets you explore a *twist-angle* compute idea without pretending the
 
 ## Watch the demo
 
+The GIF **plays on this page**. Cursor’s recorder logo and end-of-video cube bumper have been removed.
+
 <p align="center">
-  <a href="docs/demo.mp4">
-    <img src="docs/demo-poster.jpg" alt="MoiréForge dashboard walkthrough" width="920"/>
-  </a>
+  <img src="docs/demo.gif" alt="MoiréForge dashboard walkthrough — plays inline" width="920"/>
 </p>
 
 <p align="center">
-  <a href="docs/demo.mp4"><strong>▶ Play walkthrough (docs/demo.mp4)</strong></a>
+  <a href="https://github.com/TechieGoku2623/moireforge/blob/main/docs/demo.mp4"><strong>▶ Open HD player on GitHub</strong></a>
+  ·
+  <a href="docs/watch.html">local HTML player</a>
+  ·
+  <a href="docs/demo.webp">WebP</a>
 </p>
-
-<video src="docs/demo.mp4" controls width="100%" poster="docs/demo-poster.jpg"></video>
 
 The clip is the Next.js dashboard (`frontend/`) talking to FastAPI (`saas/api/`) — the same tree this README lists.
 
